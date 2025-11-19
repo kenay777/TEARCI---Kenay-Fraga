@@ -1,0 +1,53 @@
+const int botao = 7;  // Pino onde o botão está conectado
+const int led = 4; // Pino onde o LED está conectado
+
+void setup() {
+    Serial.begin(9600);          // Inicia a comunicação serial
+    pinMode(botao, INPUT);  // Define o botão como entrada 
+    pinMode(led, OUTPUT);  // Define o led como saída 
+}
+
+void loop() {
+    int estadoBotao = digitalRead(botao);  // Lê o estado do botão
+
+    if (estadoBotao == HIGH) {  // O botão está pressionado
+        digitalWrite(led, HIGH); //Acende o Led
+    } else {
+        digitalWrite(led, LOW); //Caso contrário, o Led fica desligado
+    }
+
+    delay(200);  // Pequena pausa para evitar leituras instáveis
+} 
+const int botao = 7;  // Pino onde o botão está conectado
+const int ledVerde = 4; // Pino onde o LED está conectado
+const int ledAmarelo = 3; // Pino onde o LED está conectado
+const int ledVermelho = 2; // Pino onde o LED está conectado
+
+
+void setup() {
+    Serial.begin(9600);          // Inicia a comunicação serial
+    pinMode(botao, INPUT);  // Define o botão como entrada 
+    pinMode(ledVerde, OUTPUT);  // Define o ledVerde como saída 
+    pinMode(ledAmarelo, OUTPUT);  // Define o ledAmarelo como saída 
+    pinMode(ledVermelho, OUTPUT);  // Define o ledVermelho como saída 
+}
+
+void loop() {
+    int estadoBotao = digitalRead(botao);  // Lê o estado do botão
+
+    if (estadoBotao == HIGH) {  // O botão está pressionado
+        digitalWrite(ledVerde, HIGH); //Acende o Led
+        delay(1000);
+        digitalWrite(ledVerde, LOW); //Acende o Led
+        digitalWrite(ledAmarelo, HIGH); //Acende o Led
+        delay(1000);
+        digitalWrite(ledAmarelo, LOW); //Acende o Led
+        digitalWrite(ledVermelho, HIGH); //Acende o Led
+    } else {
+        digitalWrite(ledVerde, LOW); //Caso contrário, o Led fica desligado
+        digitalWrite(ledAmarelo, LOW); //Caso contrário, o Led fica desligado
+        digitalWrite(ledVermelho, LOW); //Caso contrário, o Led fica desligado
+    }
+
+    delay(200);  // Pequena pausa para evitar leituras instáveis
+}

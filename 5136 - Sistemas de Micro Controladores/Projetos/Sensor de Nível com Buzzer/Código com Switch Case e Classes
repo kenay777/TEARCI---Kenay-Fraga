@@ -1,0 +1,95 @@
+int sensorValue = 0;
+int sensor = A0;
+
+class LEDSEBUZZER {
+  public:
+    int verde;
+    int azul;
+    int vermelha;
+    int buzzer;
+
+    LEDSEBUZZER(int v, int a, int r, int b) {
+      verde = v;
+      azul = a;
+      vermelha = r;
+      buzzer = b;
+    }
+
+    void LigarVerde() {
+      digitalWrite(azul, LOW);
+      digitalWrite(verde, HIGH);
+      digitalWrite(vermelha, LOW);
+      digitalWrite(buzzer, LOW);
+    }
+
+    void LigarAzul() {
+      digitalWrite(azul, HIGH);
+      digitalWrite(verde, LOW);
+      digitalWrite(vermelha, LOW);
+      digitalWrite(buzzer, LOW);
+    }
+
+    void LigarVermelho() {
+      digitalWrite(azul, LOW);
+      digitalWrite(verde, LOW);
+      digitalWrite(vermelha, HIGH);
+      digitalWrite(buzzer, HIGH);
+    }
+
+    void TUDOOFF() {
+      digitalWrite(azul, LOW);
+      digitalWrite(verde, LOW);
+      digitalWrite(vermelha, LOW);
+      digitalWrite(buzzer, LOW);
+    }
+};
+
+// Instância correta do objeto
+LEDSEBUZZER leds(10, 8, 9, 11);
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(sensor, INPUT);
+  pinMode(leds.verde, OUTPUT);
+  pinMode(leds.azul, OUTPUT);
+  pinMode(leds.vermelha, OUTPUT);
+  pinMode(leds.buzzer, OUTPUT);
+}
+
+void loop() {
+  sensorValue = analogRead(sensor);
+  Serial.print("Valor do sensor: ");
+  Serial.println(sensorValue);
+
+  delay(500);
+
+int estadoSensor;
+
+if (sensorValue <= 100) {
+    estadoSensor = 0;
+  } else if (sensorValue > 130 && sensorValue < 230) {
+    estadoSensor = 1;
+  } else if (sensorValue > 250) {
+    estadoSensor = 2;
+  } else {
+    estadoSensor = 3;
+  }
+
+  switch (estadoSensor) {
+  case 0: //Detecta quantia baixa de Água
+    Serial.print ("Estado 2");
+    leds.LigarVerde();
+    break;
+  case 1: //Detecta quantia razoável de Água
+    Serial.print ("Estado 3");
+    leds.LigarAzul();
+    break;
+  case 2: //Detecta quantia alta de Água
+    Serial.print ("Estado 4");
+    leds.LigarVermelho();
+    break;
+  case 3: //Estado de manutenção
+    leds.TUDOOFF();
+    break;
+  }
+}

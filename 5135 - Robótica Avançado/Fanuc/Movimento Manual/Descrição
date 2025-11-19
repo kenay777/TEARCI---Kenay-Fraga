@@ -1,0 +1,4 @@
+No âmbito da formação, foi realizada a tarefa de "Movimento Manual", isto é, movimentar o braço robótico da Fanuc através de um movimento livre e não programado, onde os formandos não necessitam criar um ponto para que o robô atue.
+Desafios Apresentados:   
+  1 - Inicialmente tivemos que liberar as etapas de segurança, pois estava mal programado, com isto, o braço ficava sempre em estado de alerta.
+  2 - Em seguida, basta utilizar o controle manual, onde basta colocar o Pino "ON", em seguida apertar shift + Deadman e movimentar através das teclas de eixo no controlador.

@@ -1,0 +1,15 @@
+const int sensor = A0; // Pino analógico conectado ao sensor
+int sensorValue = 0;
+
+
+void setup() {
+  Serial.begin(9600); // Inicializa comunicação serial
+}
+
+void loop() {
+  sensorValue = analogRead(sensor); // Lê valor analógico (0-1023)
+  Serial.print("Valor do sensor: ");
+  Serial.println(sensorValue);
+
+  delay(1000); // Aguarda 1 segundo antes da próxima leitura
+}

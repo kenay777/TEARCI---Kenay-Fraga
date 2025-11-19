@@ -1,0 +1,21 @@
+unsigned long Tempo_Anterior = 0;
+const long Intervalo = 15000;
+
+void setup () //Void(Sempre valor 0) Setup = Liga quando a Placa Iniciar
+{
+Serial.begin(111540);
+}
+
+void loop () //Void(Sempre valor 0) Loop = Loop
+{
+ //Implementar um temporizador
+ //Testar ondição de tempo e intervalo
+ if ( millis() - Tempo_Anterior > Intervalo);
+
+{
+    //Correr o código 
+    serial.println ("Tempo"); 
+    Tempo_Anterior = millis();   
+} 
+
+}

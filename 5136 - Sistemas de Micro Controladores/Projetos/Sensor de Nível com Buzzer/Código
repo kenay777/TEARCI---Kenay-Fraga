@@ -1,0 +1,53 @@
+const int sensor = A0; // Pino analógico conectado ao sensor
+int sensorValue = 0;
+const int verde = 10;
+const int vermelho = 9;
+const int azul = 8;
+const int buzzer = 11;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(sensor, INPUT);
+  pinMode(verde, OUTPUT);
+  pinMode(azul, OUTPUT);
+  pinMode(vermelho, OUTPUT);
+  pinMode(buzzer, OUTPUT);
+}
+
+void loop() {
+  sensorValue = analogRead(sensor);
+  Serial.print("Valor do sensor: ");
+  Serial.println(sensorValue);
+
+  delay(500);
+
+  if (sensorValue <= 100) {
+    digitalWrite(verde, HIGH);  
+    digitalWrite(vermelho, LOW); 
+    digitalWrite(azul, LOW); 
+    digitalWrite(buzzer, LOW); 
+  }
+
+  else if ((sensorValue > 130) && (sensorValue < 230)) {
+    digitalWrite(azul, HIGH); 
+    digitalWrite(verde, LOW); 
+    digitalWrite(vermelho, LOW); 
+    digitalWrite(buzzer, LOW); 
+  }
+
+  else if (sensorValue > 250) {
+    digitalWrite(vermelho, HIGH); 
+    digitalWrite(verde, LOW); 
+    digitalWrite(azul, LOW); 
+    digitalWrite(buzzer, HIGH); 
+  }
+
+
+  else {
+    digitalWrite(verde, LOW); 
+    digitalWrite(vermelho, LOW); 
+    digitalWrite(azul, LOW); 
+    digitalWrite(buzzer, LOW); 
+
+  }
+}

@@ -1,0 +1,5 @@
+No âmbito da formação, foi realizada a tarefa de "Criação de Trajetória", isto é, programar pontos para que o robô siga todos os códigos com apenas um botão.
+Desafios apresentados:
+  1 - Incialmente foi necessário resolver alguns bugs que não haviam sido resolvidos;
+
+Após a resolução do desafio, bastou programarmos as posições através da criação de código no controlador e salvar com as teclas F1 e selecionar a opção "P", que se refere à um ponto.

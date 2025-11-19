@@ -1,0 +1,20 @@
+const int redPin = 8;  
+const int greenPin = 4;
+
+void setup() {
+    pinMode(redPin, OUTPUT);
+    pinMode(greenPin, OUTPUT);
+}
+
+void loop() {
+    analogWrite(redPin, 255);  // Liga vermelho
+    analogWrite(greenPin, 0);  // Desliga verde
+    delay(4000);
+
+    analogWrite(redPin, 0);  // Desliga vermelho
+    analogWrite(greenPin, 255);  // Liga verde
+    delay(4000);
+
+    analogWrite(redPin, 180);  // Liga vermelho
+    analogWrite(greenPin, 180);  // Desliga verde
+    delay(4000);

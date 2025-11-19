@@ -1,0 +1,75 @@
+int sensorValue = 0;
+int sensor = A0;
+
+class LEDSEBUZZER {
+  public:
+    int verde;
+    int azul;
+    int vermelha;
+    int buzzer;
+
+    LEDSEBUZZER(int v, int a, int r, int b) {
+      verde = v;
+      azul = a;
+      vermelha = r;
+      buzzer = b;
+    }
+
+    void LigarVerde() {
+      digitalWrite(azul, LOW);
+      digitalWrite(verde, HIGH);
+      digitalWrite(vermelha, LOW);
+      digitalWrite(buzzer, LOW);
+    }
+
+    void LigarAzul() {
+      digitalWrite(azul, HIGH);
+      digitalWrite(verde, LOW);
+      digitalWrite(vermelha, LOW);
+      digitalWrite(buzzer, LOW);
+    }
+
+    void LigarVermelho() {
+      digitalWrite(azul, LOW);
+      digitalWrite(verde, LOW);
+      digitalWrite(vermelha, HIGH);
+      digitalWrite(buzzer, HIGH);
+    }
+
+    void TUDOOFF() {
+      digitalWrite(azul, LOW);
+      digitalWrite(verde, LOW);
+      digitalWrite(vermelha, LOW);
+      digitalWrite(buzzer, LOW);
+    }
+};
+
+// Instância correta do objeto
+LEDSEBUZZER leds(10, 8, 9, 11);
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(sensor, INPUT);
+  pinMode(leds.verde, OUTPUT);
+  pinMode(leds.azul, OUTPUT);
+  pinMode(leds.vermelha, OUTPUT);
+  pinMode(leds.buzzer, OUTPUT);
+}
+
+void loop() {
+  sensorValue = analogRead(sensor);
+  Serial.print("Valor do sensor: ");
+  Serial.println(sensorValue);
+
+  delay(500);
+
+  if (sensorValue <= 100) {
+    leds.LigarVerde();
+  } else if (sensorValue > 130 && sensorValue < 230) {
+    leds.LigarAzul();
+  } else if (sensorValue > 250) {
+    leds.LigarVermelho(); // Corrigido: antes chamava LigarAzul
+  } else {
+    leds.TUDOOFF();
+  }
+}

@@ -1,0 +1,88 @@
+class Semaforo {
+    int ledVerde;
+    int ledAmarelo;
+    int ledVermelho;
+
+    void LigarVerde();
+
+    void LigarAmarelo();
+
+    void LigarVermelho();
+};
+
+// Definição dos semáforos
+Semaforo semaforo1 = {11, 2, 3};
+Semaforo semaforo2 = {5, 6, 7};
+
+const int controleRemoto = 10;
+int estado = 1;
+
+void Semaforo::LigarVerde() {
+
+    digitalWrite(ledVerde, HIGH);
+    digitalWrite(ledAmarela, LOW);
+    digitalWrite(ledVermelha, LOW);
+
+
+}
+
+void Semaforo::LigarAmarelo() {
+
+    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledAmarela, HIGH);
+    digitalWrite(ledVermelha, LOW);
+
+
+}
+
+void Semaforo::LigarVermelho() {
+
+    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledAmarela, LOW);
+    digitalWrite(ledVermelha, HIGH);
+
+
+}
+
+void setup() {
+    Serial.begin(9600);
+
+    // Configuração dos pinos dos LEDs
+    pinMode(semaforo1.ledVerde, OUTPUT);
+    pinMode(semaforo1.ledAmarelo, OUTPUT);
+    pinMode(semaforo1.ledVermelho, OUTPUT);
+
+    pinMode(semaforo2.ledVerde, OUTPUT);
+    pinMode(semaforo2.ledAmarelo, OUTPUT);
+    pinMode(semaforo2.ledVermelho, OUTPUT);
+
+    pinMode(controleRemoto, INPUT);
+}
+
+void loop() {
+    if (digitalRead(controleRemoto) == LOW) { 
+        Serial.println("Controle Detectado!");
+        estado = 2;
+    }
+
+    switch (estado) {
+        case 1:
+            // Estado 1: Configuração dos LEDs
+            semaforo1.LigarVerde;
+            semaforo2.LigarVermelho;
+            break;
+
+        case 2:
+            // Estado 2: Configuração dos LEDs
+            semaforo1.LigarAmarelo;
+            semaforo2.LigarVermelho;
+            delay(1000);
+            semaforo1.LigarVermelho;
+            semaforo2.LigarVerde;
+            delay(1000);
+            semaforo2.LigarAmarelo;
+
+            estado = 1;
+            break;
+    }
+}

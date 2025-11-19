@@ -1,0 +1,26 @@
+Início
+Entra em seguida no E1
+
+E1 - Válvula Aberta
+1 - Válvula Aberta
+2 - Verifica Sensores:
+V.S. = Caso Avaria Simples  Detectada
+    - Vai para E3
+V.S. = Caso Avaria Grave Detectada
+    - Vai para E4
+3 - Envia Notificação de Funcionamento
+
+E2 - Válvula Fechada
+1 - Válvula Fechada
+2 - Sistema de Filtragem Desligado
+3 - LEDs Ligadas = Vermelha
+4 - Envia Notificação de Funcionamento
+
+E3 - Estado de Aviso
+1 - LEDs Ligadas = Amarela
+2 - Envia Notificação
+
+E4 - Estado de Emergência
+1 - Válvula Fechada
+2 - LEDs Ligadas = Vermelha
+3 - Envia Notificação

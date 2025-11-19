@@ -1,0 +1,38 @@
+const int ledVerde = 10;
+const int ledAmarelo = 9;
+const int ledVermelho = 8;
+
+unsigned long tempoAnterior = 0;
+int estado = 0;
+
+void setup() {
+    pinMode(ledVerde, OUTPUT);
+    pinMode(ledAmarelo, OUTPUT);
+    pinMode(ledVermelho, OUTPUT);
+}
+
+void loop() {
+    unsigned long tempoAtual = millis();
+
+    if (estado == 0 && tempoAtual - tempoAnterior >= 5000) {
+        // Verde desliga, Amarelo liga
+        digitalWrite(ledVerde, LOW);
+        digitalWrite(ledAmarelo, HIGH);
+        tempoAnterior = tempoAtual;
+        estado = 1;
+    } 
+    else if (estado == 1 && tempoAtual - tempoAnterior >= 2000) {
+        // Amarelo desliga, Vermelho liga
+        digitalWrite(ledAmarelo, LOW);
+        digitalWrite(ledVermelho, HIGH);
+        tempoAnterior = tempoAtual;
+        estado = 2;
+    } 
+    else if (estado == 2 && tempoAtual - tempoAnterior >= 5000) {
+        // Vermelho desliga, Verde liga
+        digitalWrite(ledVermelho, LOW);
+        digitalWrite(ledVerde, HIGH);
+        tempoAnterior = tempoAtual;
+        estado = 0;
+    }
+}
